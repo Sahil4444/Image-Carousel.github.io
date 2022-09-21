@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+
+    <!-- Font Awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300&display=swap');
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header h1{
+            background-color: #9747B5;
+            margin: 0;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .carousel-container{
+            margin: 100px;
+            position: relative;
+        }
+
+        .slides{
+            display: none;
+        }
+
+        .carousel-container .slides .image{
+            width: 100%;
+            height: 500px;
+        }
+
+        .carousel-container .arrow{
+            position: absolute;
+            cursor: pointer;
+            top: 45%;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .leftArrow{
+            left: 10px;
+        }
+
+        .rightArrow{
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Image Carousel</h1>
+    </header>
+    
+    <div class="carousel-container">
+        <div class="slides">
+            <img src="assets/img1.jpg" alt="" class="image">   
+        </div>
+        <div class="slides">
+            <img src="assets/img2.jpg" alt="" class="image">
+        </div>
+        <div class="slides">
+            <img src="assets/img3.jpg" alt="" class="image">
+        </div>
+        <div class="slides">
+            <img src="assets/img4.jpg" alt="" class="image">
+        </div>
+        <i class="fa-solid fa-angle-left arrow leftArrow" onclick="controll(-1)"></i>
+        <i class="fa-solid fa-angle-right arrow rightArrow" onclick="controll(1)"></i>
+    </div>
+
+    <script>
+        let flag = 0;
+
+        function controll(x){
+            flag = flag + x;
+            slideShow(flag);
+        }
+
+        slideShow(flag);
+
+        function slideShow(num){
+            let slide = document.getElementsByClassName("slides");
+            // console.log(slide);
+
+            if(num == slide.length){
+                num = 0;
+                flag = 0;
+            }
+            if(num < 0){
+                num = slide.length - 1;
+                flag = slide.length - 1;
+            }
+
+            for(let y of slide){
+                y.style.display = "none";
+            }
+            slide[num].style.display = "block";
+        }
+    </script>
+    
+</body>
+</html>
